@@ -116,8 +116,8 @@ class AdminController extends Controller
      */
     public function destroy(string $id)
     {
+        Alert::success('Berhasil!', 'Berhasil hapus data lapangan.');
         Lapangan::find($id)->delete();
-        Alert::success('Berhasil!', 'Berhasil menghapus data lapangan.');
         return redirect()->route('admin.index');
     }
 

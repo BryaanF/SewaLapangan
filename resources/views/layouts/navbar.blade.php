@@ -32,7 +32,7 @@
                 <ul class="nav nav-pills black d-flex gap-3">
                     <!-- Left Side Of Navbar -->
                     <li class="nav-item col-2 col-md-auto "><a href="{{ route('home') }}"
-                            class="nav-link @if ($currentRouteName == 'home') active @endif">Home</a></li>
+                            class="nav-link @if ($currentRouteName == 'home' or $currentRouteName == '') active @endif">Home</a></li>
                     <li class="nav-item col-2 col-md-auto"><a href="{{ route('sewalapangan') }}"
                             class="nav-link @if ($currentRouteName == 'sewalapangan') active @endif">Sewa Lapangan</a></li>
                     <li class="nav-item col-2 col-md-auto"><a href="{{ route('admin.index') }}"
@@ -82,9 +82,9 @@
                     @endguest
                 </ul>
             @else
-                <ul class="nav nav-pills black">
+                <ul class="nav nav-pills black d-flex gap-3">
                     <li class="nav-item col-2 col-md-auto"><a href="{{ route('home') }}"
-                            class="nav-link @if ($currentRouteName == 'home') active @endif">Home</a></li>
+                            class="nav-link @if ($currentRouteName == 'home' or $currentRouteName == '') active @endif">Home</a></li>
                     <li class="nav-item col-2 col-md-auto"><a href="{{ route('sewalapangan') }}"
                             class="nav-link  @if ($currentRouteName == 'sewalapangan') active @endif">Sewa Lapangan</a></li>
                 </ul>

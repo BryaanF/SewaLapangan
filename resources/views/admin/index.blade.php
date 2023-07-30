@@ -25,36 +25,42 @@
                     <form class="" action="{{ route('admin.destroy', ['admin' => $lapangan->id]) }}" method="POST">
                         @csrf
                         @method('delete')
-
-                        <button type="submit" class="btn btn-danger btn-delete"
-                            data-name="{{ $lapangan->nama }}">DELETE</button>
+                        <button type="submit" class="btn btn-danger btn-delete confirm" id="btn-delete">DELETE</button>
                     </form>
 
                 </div>
             </div>
         </div>
     @endforeach
-    @push('scripts')
-        <script type="module">
-            $(document).ready(function() {
-                $(".delete").on("click", ".btn-delete", function (e) {
-                e.preventDefault();
-                var form = $(this).closest("form");
-                var nama = $(this).data("nama");
-                Swal.fire({
-                title: "Are you sure want to delete\n" + nama + "?",
-                text: "You won't be able to revert this!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonClass: "bg-primary",
-                confirmButtonText: "Yes, delete it!",
-                }).then((result) => {
-                if (result.isConfirmed) {
-                form.submit();
-                }
-                });
-                });
-                });
-                </script>
-    @endpush
 @endsection
+@push('scripts')
+            <script type="module">
+        //the confirm class that is being used in the delete button
+        $('.confirm').click(function(event) {
+
+        //This will choose the closest form to the button
+        var form =  $(this).closest("form");
+
+        //don't let the form submit yet
+        event.preventDefault();
+
+        //configure sweetalert alert as you wish
+        Swal.fire({
+            title: 'Hapus Data',
+            text: "Yakin ingin menghapus data?",
+            cancelButtonText: "Tidak",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yakin!'
+        }).then((result) => {
+
+            //in case of deletion confirm then make the form submit
+            if (result.isConfirmed) {
+                form.submit();
+            }
+        })
+        });
+        </script>
+@endpush
